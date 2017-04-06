@@ -1,4 +1,4 @@
-Commands:
+# Commands:
 
 build image:
 $ docker-compose build
