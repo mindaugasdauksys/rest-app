@@ -1,10 +1,10 @@
-# README
-
 Commands:
 
 build image:
-* docker-compose build
+$ docker-compose build
+
 start server:
-* docker-compose up
+$ docker-compose up
+
 setup database:
-* docker-compose run webapp rake db:setup
+$ docker-compose run webapp rake db:setup
