@@ -11,12 +11,12 @@ setup database:<br/>
 
 # Rest methods:
 Verb	URI Pattern
-*GET	/accounts(.:format)
-*POST	/accounts(.:format)
-*GET	/accounts/:id(.:format)
-*PUT	/accounts/:id(.:format)
-*GET	/payments(.:format)
-*POST	/payments(.:format)
-*GET	/payments/:id(.:format)
-*GET	/branches(.:format)
-*GET	/branches/:id(.:format)
+* GET	/accounts
+* POST	/accounts(.:format)
+* GET	/accounts/:id
+* PUT	/accounts/:id(.:format)
+* GET	/payments
+* POST	/payments(.:format)
+* GET	/payments/:id
+* GET	/branches
+* GET	/branches/:id
