@@ -1,10 +1,10 @@
 # Commands:
 
-build image:
-$ docker-compose build
+build image:<br/>
+$ docker-compose build<br/><br/>
 
-start server:
-$ docker-compose up
+start server:<br/>
+$ docker-compose up<br/><br/>
 
-setup database:
+setup database:<br/>
 $ docker-compose run webapp rake db:setup
