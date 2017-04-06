@@ -10,7 +10,6 @@ setup database:<br/>
 * docker-compose run webapp rake db:setup
 
 # Available methods:
-Verb				URI Pattern
 * GET				/accounts
 * POST				/accounts(.:format)
 * GET				/accounts/:id
