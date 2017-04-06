@@ -1,0 +1,38 @@
+version: '2'
+services:
+  webapp_setup:
+    build:
+      context: .
+      dockerfile: Dockerfile.development
+    depends_on:
+      - postgres
+    environment:
+      - PASSENGER_APP_ENV=development
+    entrypoint: ./setup.sh
+  webapp:
+    container_name: rest-app
+    build:
+      context: .
+      dockerfile: Dockerfile.development
+    depends_on:
+      - postgres
+      - webapp_setup
+    ports:
+      - "80:80"
+    environment:
+      - PASSENGER_APP_ENV=development
+    volumes:
+      - .:/home/app/webapp
+  postgres:
+    image: postgres:9.5.3
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+      - POSTGRES_USER=rest-app
+      - POSTGRES_DB=rest-app_development
+    volumes_from:
+      - data
+  data:
+    image: postgres:9.5.3
+    volumes:
+      - /var/lib/postgresql
+    command: "true"
