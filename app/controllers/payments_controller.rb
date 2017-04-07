@@ -6,12 +6,20 @@ class PaymentsController < ApplicationController
   end
 
   def show 
-    render json: Payment.find_by_id(params[:id])
+    @payment = Payment.find_by_id(params[:id])
+    if @payment
+      render json: @payment
+    else
+      render_404
+    end 
   end
 
   def create
-    puts request.query_parameters
-    @payment = Payment.create(request.query_parameters)
-    render json: @payment
+    if params[:from] and params[:to] and params[:amount]
+      @account = Account.create(request.query_parameters)
+    else
+      @account = nil
+    end
+    render json: @account
   end
 end
