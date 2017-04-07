@@ -6,15 +6,12 @@ class PaymentsController < ApplicationController
   end
 
   def show 
-    render json: Payment.find(params[:id])
+    render json: Payment.find_by_id(params[:id])
   end
 
   def create
-    @payment = Payment.new
-    @payment.from = params[:to]
-    @payment.to = params[:to]
-    @payment.amount = params[:amount]
-    @payment.save
+    puts request.query_parameters
+    @payment = Payment.create(request.query_parameters)
     render json: @payment
   end
 end

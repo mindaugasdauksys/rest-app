@@ -4,6 +4,6 @@ class BranchesController < ApplicationController
   end
 
   def show
-    render json: Branch.find(params[:id])
+    render json: Branch.find_by_id(params[:id])
   end
 end
