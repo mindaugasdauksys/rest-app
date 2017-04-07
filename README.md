@@ -4,10 +4,10 @@ build image:<br/>
 * docker-compose build<br/>
 
 start server:<br/>
-* docker-compose up<br/>
+* docker-compose up -d<br/>
 
 setup database:<br/>
-* docker-compose run webapp rake db:setup
+* docker-compose run -d webapp rake db:setup
 
 # Available methods:
 * GET    /accounts
