@@ -15,6 +15,7 @@ setup database:<br/>
 * GET    /accounts/:id
 * PATCH  /accounts/:id(.:format)
 * DELETE /accounts/:id
+* PATCH  /accounts/currency/:id(.:format)
 
 * GET    /payments
 * POST   /payments(.:format)

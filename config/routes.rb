@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :payments, only: [:index, :show, :create]
   resources :branches, only: [:index, :show]
   get '*unmatched_route', to: 'application#render_404'
+  patch 'accounts/currency/:id', to: 'accounts#convert'
 end

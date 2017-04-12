@@ -1,6 +1,6 @@
 class AccountsController < ApplicationController
+  require 'rest-client'
   skip_before_action :verify_authenticity_token
-
   def index
     render json: Account.all
   end
@@ -10,25 +10,33 @@ class AccountsController < ApplicationController
   end
 
   def show
-    @account = Account.find_by_id(params[:id])
-    render json: @account if @account
-    render_404 unless @account
+    with_id_protected(params[:id])
   end
 
   def update
-    @account = Account.find_by_id(params[:id])
-    if @account
-      @account.update!(request.query_parameters)
-      render json: @account
-    else
-      render_404
+    with_id_protected(params[:id]) do |account|
+      account.update(request.query_parameters)
     end
   end
 
   def destroy
-    @account = Account.find_by_id(params[:id])
+    with_id_protected(params[:id]) { |account| account.destroy }
+  end
+
+  def convert
+    with_id_protected(params[:id]) do |acc|
+      unless acc.currency.eql? params[:to]
+        url = "api.fixer.io/latest?base=#{acc.currency}&symbols=#{params[:to]}"
+        ratio = JSON.parse(RestClient.get(url).body)['rates'][params[:to]]
+        acc.update(amount: acc.amount * ratio, currency: params[:to])
+      end
+    end
+  end
+
+  def with_id_protected(id, &block)
+    @account = Account.find_by_id(id)
     if @account
-      @account.destroy
+      block.call(@account) if block
       render json: @account
     else
       render_404

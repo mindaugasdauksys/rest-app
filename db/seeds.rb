@@ -5,9 +5,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Account.create( name: 'Petras', surname: 'Petraitis', money: 750 )
-Account.create( name: 'Jonas', surname: 'Jonaitis', money: 1500 )
-Account.create( name: 'Ona', surname: 'Onaite', money: 3300 )
+Account.create( name: 'Petras', surname: 'Petraitis', amount: 750 )
+Account.create( name: 'Jonas', surname: 'Jonaitis', amount: 1500 )
+Account.create( name: 'Ona', surname: 'Onaite', amount: 3300 )
 
 Payment.create( from: 1, to: 2, amount: 300 )
 Payment.create( from: 2, to: 3, amount: 400 )
