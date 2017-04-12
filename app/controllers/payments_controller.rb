@@ -15,11 +15,6 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    if params[:from] and params[:to] and params[:amount]
-      @payment = Payment.create(request.query_parameters)
-    else
-      @payment = nil
-    end
-    render json: @payment
+    render json: Payment.create(request.query_parameters)
   end
 end

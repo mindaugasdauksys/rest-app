@@ -6,12 +6,7 @@ class AccountsController < ApplicationController
   end
 
   def create
-    if params[:name] and params[:surname] and params[:money]
-      @account = Account.create(request.query_parameters)
-    else
-      @account = nil
-    end
-    render json: @account
+    render json: Account.create(request.query_parameters)
   end
 
   def show
