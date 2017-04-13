@@ -15,6 +15,6 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    render json: Payment.create(request.query_parameters)
+    render json: Payment.create(params.permit(:from, :to, :amount, :currency))
   end
 end

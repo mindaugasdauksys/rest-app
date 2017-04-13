@@ -6,7 +6,7 @@ class AccountsController < ApplicationController
   end
 
   def create
-    render json: Account.create(request.query_parameters)
+    render json: Account.create(params.permit(:name, :surname, :amount, :currency))
   end
 
   def show
@@ -15,7 +15,7 @@ class AccountsController < ApplicationController
 
   def update
     with_id_protected(params[:id]) do |account|
-      account.update(request.query_parameters)
+      account.update(params.permit(:name, :surname, :amount, :currency))
     end
   end
 
@@ -26,7 +26,7 @@ class AccountsController < ApplicationController
   def convert
     with_id_protected(params[:id]) do |acc|
       unless acc.currency.eql? params[:to]
-        url = "api.fixer.io/latest?base=#{acc.currency}&symbols=#{params[:to]}"
+        url = "http://api.fixer.io/latest?base=#{acc.currency}&symbols=#{params[:to]}"
         ratio = JSON.parse(RestClient.get(url).body)['rates'][params[:to]]
         acc.update(amount: acc.amount * ratio, currency: params[:to])
       end

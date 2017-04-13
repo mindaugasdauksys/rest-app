@@ -7,11 +7,11 @@
 
 Account.create( name: 'Petras', surname: 'Petraitis', amount: 750 )
 Account.create( name: 'Jonas', surname: 'Jonaitis', amount: 1500 )
-Account.create( name: 'Ona', surname: 'Onaite', amount: 3300 )
+Account.create( name: 'Ona', surname: 'Onaite', amount: 3300, currency: 'USD' )
 
-Payment.create( from: 1, to: 2, amount: 300 )
-Payment.create( from: 2, to: 3, amount: 400 )
-Payment.create( from: 3, to: 1, amount: 600 )
+Payment.create( from: 1, to: 2, amount: 300, currency: 'EUR' )
+Payment.create( from: 2, to: 3, amount: 400, currency: 'USD' )
+Payment.create( from: 3, to: 1, amount: 600, currency: 'EUR' )
 
 Branch.create( address: 'Vilnius, Konstitucijos pr. 20' )
 Branch.create( address: 'Kaunas, Vilniaus g. 30' )
