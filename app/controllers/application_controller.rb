@@ -8,4 +8,11 @@ class ApplicationController < ActionController::Base
       format.any  { head :not_found }
     end
   end
+
+  def respond_with(param)
+    respond_to do |format|
+      format.html
+      format.json { render json: param }
+    end
+  end
 end

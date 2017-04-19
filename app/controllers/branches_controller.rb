@@ -1,12 +1,12 @@
 class BranchesController < ApplicationController
   def index
-    render json: Branch.all
+    respond_with (@branches = Branch.all)
   end
 
   def show
     @branch = Branch.find_by_id(params[:id])
     if @branch
-      render json: @branch
+      respond_with @branch
     else
       render_404
     end

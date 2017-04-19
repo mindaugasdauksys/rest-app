@@ -10,17 +10,11 @@ setup database:<br/>
 * docker-compose run -d webapp rake db:setup
 
 # Available methods:
-* GET    /accounts
-* POST   /accounts(.:format)
-* GET    /accounts/:id
-* PATCH  /accounts/:id(.:format)
-* DELETE /accounts/:id
-* PATCH  /accounts/currency/:id(.:format)
-
-* GET    /payments
-* POST   /payments(.:format)
-* GET    /payments/:id
-
-* GET    /branches(.:format)
-* GET    /branches/:id
-
+|Path|Methods|
+|---|---|
+|accounts|GET POST|
+|accounts/:id|GET PATCH DELETE|
+|payments|GET POST|
+|payments/:id|GET PATCH DELETE|
+|branches|GET POST|
+|payments/:id|GET|

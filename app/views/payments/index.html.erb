@@ -1,0 +1,14 @@
+<h1>Payments</h1>
+
+<table>
+  <tr>
+    <th>From</th>
+    <th>To</th>
+    <th>Amount</th>
+    <th>Currency</th>
+    <th>Options</th>
+  </tr>
+<%= render @payments %>
+</table>
+<br/>
+<%= link_to 'New payment', new_payment_path %>

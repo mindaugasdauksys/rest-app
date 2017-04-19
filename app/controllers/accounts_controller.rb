@@ -2,11 +2,16 @@ class AccountsController < ApplicationController
   require 'rest-client'
   skip_before_action :verify_authenticity_token
   def index
-    render json: Account.all
+    respond_with (@accounts = Account.all)
   end
 
   def create
-    render json: Account.create(params.permit(:name, :surname, :amount, :currency))
+    @account = Account.new(account_params)
+    if @account.save
+      redirect_to @account
+    else
+      render :new
+    end            
   end
 
   def show
@@ -15,12 +20,25 @@ class AccountsController < ApplicationController
 
   def update
     with_id_protected(params[:id]) do |account|
-      account.update(params.permit(:name, :surname, :amount, :currency))
+      if account.update(account_params)
+        redirect_to account
+      else
+        render :edit
+      end
     end
+  end
+
+  def edit
+    @account = Account.find_by_id(params[:id])
+  end
+
+  def new
+    @account = Account.new
   end
 
   def destroy
     with_id_protected(params[:id]) { |account| account.destroy }
+    redirect_to accounts_path
   end
 
   def convert
@@ -33,11 +51,17 @@ class AccountsController < ApplicationController
     end
   end
 
+  private
+
+  def account_params
+    params.require(:account).permit(:name, :surname, :amount, :currency)
+  end
+
   def with_id_protected(id, &block)
     @account = Account.find_by_id(id)
     if @account
       block.call(@account) if block
-      render json: @account
+      respond_with @account
     else
       render_404
     end
