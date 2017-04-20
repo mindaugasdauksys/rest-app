@@ -1,8 +1,13 @@
 class AccountsController < ApplicationController
   require 'rest-client'
   skip_before_action :verify_authenticity_token
+
   def index
     respond_with (@accounts = Account.all)
+  end
+
+  def show
+    with_id_protected { respond_with @account }
   end
 
   def create
@@ -10,60 +15,78 @@ class AccountsController < ApplicationController
     if @account.save
       redirect_to @account
     else
-      render :new
-    end            
-  end
-
-  def show
-    with_id_protected(params[:id])
-  end
-
-  def update
-    with_id_protected(params[:id]) do |account|
-      if account.update(account_params)
-        redirect_to account
-      else
-        render :edit
+      respond_to do |format|
+        format.html { render :new }
+        format.json { render_400 }
       end
     end
   end
 
+  def update
+    with_id_protected do
+      if @account.update_attributes(account_params)
+        redirect_to @account
+      else
+        respond_to do |format|
+          format.html { render :edit }
+          format.json { render_400 }
+        end
+      end
+    end
+  end
+
+  def destroy
+    with_id_protected do
+      @account.destroy
+      redirect_to accounts_path
+    end
+  end
+
   def edit
-    @account = Account.find_by_id(params[:id])
+    protect_id
   end
 
   def new
     @account = Account.new
   end
 
-  def destroy
-    with_id_protected(params[:id]) { |account| account.destroy }
-    redirect_to accounts_path
+  def reselect_currency
+    to_usd = 'http://api.fixer.io/latest?base=EUR&symbols=USD'
+    to_eur = 'http://api.fixer.io/latest?base=USD&symbols=EUR'
+    @from_eur = JSON.parse(RestClient.get(to_usd).body)['rates']['USD']
+    @from_usd = JSON.parse(RestClient.get(to_eur).body)['rates']['EUR']
+    protect_id
+  end
+
+  def get_currency(url)
+    JSON.parse(RestClient.get(url).body)
   end
 
   def convert
-    with_id_protected(params[:id]) do |acc|
-      unless acc.currency.eql? params[:to]
-        url = "http://api.fixer.io/latest?base=#{acc.currency}&symbols=#{params[:to]}"
-        ratio = JSON.parse(RestClient.get(url).body)['rates'][params[:to]]
-        acc.update(amount: acc.amount * ratio, currency: params[:to])
+    currency = account_params[:currency]
+    with_id_protected do
+      unless @account.currency.eql? currency
+        url = "http://api.fixer.io/latest?base=#{@account.currency}&symbols=#{currency}"
+        ratio = JSON.parse(RestClient.get(url).body)['rates'][currency]
+        @account.update(amount: @account.amount * ratio, currency: currency)
       end
+      redirect_to account_path
     end
   end
 
   private
 
   def account_params
-    params.require(:account).permit(:name, :surname, :amount, :currency)
+    params.fetch(:account, {}).permit(:name, :surname, :amount, :currency)
   end
 
-  def with_id_protected(id, &block)
-    @account = Account.find_by_id(id)
-    if @account
-      block.call(@account) if block
-      respond_with @account
-    else
-      render_404
-    end
+  def protect_id
+    @account = Account.find_by_id(params[:id])
+    render_404 unless @account
+  end
+
+  def with_id_protected(&block)
+    @account = Account.find_by_id(params[:id])
+    @account ? block.call : render_404
   end
 end

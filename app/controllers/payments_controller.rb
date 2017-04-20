@@ -6,35 +6,43 @@ class PaymentsController < ApplicationController
   end
 
   def show
-    with_id_protected(params[:id])
+    with_id_protected { respond_with @payment }
   end
 
   def create
-    @payment = Payment.new payment_params
+    @payment = Payment.new(payment_params)
     if @payment.save
-      respond_with @payment
+      redirect_to @payment
     else
-      render :new
+      respond_to do |format|
+        format.html { render :new }
+        format.json { render_400 }
+      end
     end
   end
 
   def update
-    with_id_protected(params[:id]) do |payment|
-      if payment.update(payment_params)
-        redirect_to payment
+    with_id_protected do
+      if @payment.update_attributes(payment_params)
+        redirect_to @payment
       else
-        render :edit
+        respond_to do |format|
+          format.html { render :edit }
+          format.json { render_400 }
+        end
       end
     end
   end
 
   def destroy
-    with_id_protected(params[:id]) { |payment| payment.destroy }
-    redirect_to payments_path
+    with_id_protected do
+      @payment.destroy
+      redirect_to payments_path
+    end
   end
 
   def edit
-    @payment = Payment.find_by_id(params[:id])
+    with_id_protected {}
   end
 
   def new
@@ -43,17 +51,12 @@ class PaymentsController < ApplicationController
 
   private
 
-  def with_id_protected(id, &block)
-    @payment = Payment.find_by_id(id)
-    if @payment
-      block.call(@payment) if block
-      respond_with @payment
-    else
-      render_404
-    end
+  def with_id_protected(&block)
+    @payment = Payment.find_by_id(params[:id])
+    @payment ? block.call : render_404
   end
 
   def payment_params
-    params.require(:payment).permit(:from, :to, :amount, :currency)
+    params.fetch(:payment, {}).permit(:from, :to, :amount, :currency)
   end
 end

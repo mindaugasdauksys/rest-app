@@ -12,9 +12,10 @@ setup database:<br/>
 # Available methods:
 |Path|Methods|
 |---|---|
-|accounts|GET POST|
-|accounts/:id|GET PATCH DELETE|
-|payments|GET POST|
-|payments/:id|GET PATCH DELETE|
-|branches|GET POST|
-|payments/:id|GET|
+|/accounts|GET POST|
+|/accounts/:id|GET PATCH DELETE|
+|/accounts/:id/convert|PATCH|
+|/payments|GET POST|
+|/payments/:id|GET PATCH DELETE|
+|/branches|GET POST|
+|/branches/:id|GET|
