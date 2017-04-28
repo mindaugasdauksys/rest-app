@@ -1,4 +1,5 @@
 <tr>
+  <th><%= account.id %></th>
   <th><%= account.name %></th>
   <th><%= account.surname %></th>
   <th><%= account.amount %></th>
@@ -8,5 +9,4 @@
     <%= link_to 'Edit', edit_account_path(account) %> 
     <%= link_to 'Destroy', account_path(account), method: :delete, data: { confirm: 'Are you sure?' } %>
     <%= link_to 'Change currency', reselect_currency_account_path(account) %>
-  </th>
 </tr>

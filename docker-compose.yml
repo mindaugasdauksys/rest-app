@@ -18,7 +18,7 @@ services:
       - postgres
       - webapp_setup
     ports:
-      - "80:80"
+      - "3000:80"
     environment:
       - PASSENGER_APP_ENV=development
     volumes:

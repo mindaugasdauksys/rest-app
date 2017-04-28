@@ -15,23 +15,20 @@ class AccountsController < ApplicationController
     if @account.save
       redirect_to @account
     else
-      respond_to do |format|
-        format.html { render :new }
-        format.json { render_400 }
-      end
+      respond_bad_attributes { render :new }
     end
   end
 
   def update
-    with_id_protected do
-      if @account.update_attributes(account_params)
-        redirect_to @account
-      else
-        respond_to do |format|
-          format.html { render :edit }
-          format.json { render_400 }
-        end
-      end
+    with_id_protected { change_attributes(account_params) { render :edit } }
+  end
+
+  def change_attributes(attributes, &block)
+    if @account.update_attributes attributes
+      puts "redirecting to: #{@account}"
+      redirect_to @account
+    else
+      respond_bad_attributes { block.call }
     end
   end
 
@@ -46,35 +43,50 @@ class AccountsController < ApplicationController
     protect_id
   end
 
+  def transfer
+    protect_id
+  end
+
   def new
     @account = Account.new
   end
 
   def reselect_currency
-    to_usd = 'http://api.fixer.io/latest?base=EUR&symbols=USD'
-    to_eur = 'http://api.fixer.io/latest?base=USD&symbols=EUR'
-    @from_eur = JSON.parse(RestClient.get(to_usd).body)['rates']['USD']
-    @from_usd = JSON.parse(RestClient.get(to_eur).body)['rates']['EUR']
-    protect_id
-  end
-
-  def get_currency(url)
-    JSON.parse(RestClient.get(url).body)
+    begin
+      @from_eur = ratio('EUR', 'USD')
+      @from_usd = ratio('USD', 'EUR')
+      protect_id
+    rescue
+      render_503
+    end
   end
 
   def convert
-    currency = account_params[:currency]
-    with_id_protected do
-      unless @account.currency.eql? currency
-        url = "http://api.fixer.io/latest?base=#{@account.currency}&symbols=#{currency}"
-        ratio = JSON.parse(RestClient.get(url).body)['rates'][currency]
-        @account.update(amount: @account.amount * ratio, currency: currency)
+    with_id_protected do 
+      currency = account_params.require(:currency)
+      begin
+        change_attributes(amount: @account.amount * ratio(@account.currency,
+                                                          currency),
+                          currency: currency) { render :reselect_currency }
+      rescue
+        render_503
       end
-      redirect_to account_path
     end
   end
 
   private
+
+  def url(base, symbols)
+    "http://api.fixer.io/latest?base=#{base}&symbols=#{symbols}"
+  end
+
+  def ratio(base, symbols)
+    if !base.eql? symbols
+      JSON.parse(RestClient.get(url(base,symbols)).body)['rates'][symbols]
+    else
+      1
+    end
+  end
 
   def account_params
     params.fetch(:account, {}).permit(:name, :surname, :amount, :currency)
