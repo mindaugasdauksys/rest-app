@@ -63,22 +63,33 @@ class PaymentsController < ApplicationController
 
   def carry
     address = "172.17.0.1:8000/accounts/#{payment_params[:to]}"
+    #address = "localhost:8000/accounts/#{payment_params[:to]}"
     puts address
-    response = RestClient.get(address, {accept: :json})
-    if response.code == 200
-      puts JSON.parse response.body
-      balance = JSON.parse(response.body)['balance'].to_i
       begin
-        RestClient.patch(address, {'balance' => balance + payment_params[:amount].to_i}.to_json, {content_type: :json, accept: :json}) 
+        response = RestClient.get(address, {accept: :json})
+        if response.code == 200
+          puts JSON.parse response.body
+          balance = JSON.parse(response.body)['balance'].to_i
+          RestClient.patch(address, {'balance' => balance + payment_params[:amount].to_i}.to_json, {content_type: :json, accept: :json}) do |response, request, result, &block|
+            if [301, 302, 307].include? response.code
+              # response.follow_redirection(&block)
+              acc = Account.find_by_id(payment_params[:from])
+              acc.update(amount: acc.amount - payment_params[:amount].to_i)
+              puts "TRANSFERED: #{balance} + #{payment_params[:amount]}"
+              redirect_to payments_path
+            else
+              puts 'I COME HERE'
+              response.return!(request, result, &block)
+            end
+          end
+        else
+          puts response.code
+          render_400
+        end
       rescue Exception => e
         puts "EXCEPTION: #{e}"
+        render_503
       end
-      puts "TRANSFERED: #{balance} + #{payment_params[:amount]}"
-      redirect_to payments_path
-    else
-      puts response.code
-      render_400
-    end
   end
 
   private

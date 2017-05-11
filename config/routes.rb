@@ -11,6 +11,9 @@ Rails.application.routes.draw do
       get :transfer
     end
   end
+  get '/' => 'sessions#new', as: :start_page
+  post '/login' => 'sessions#create'
+  delete '/logout' => 'sessions#destroy'
   resources :branches, only: [:index, :show]
   get '/400', to: 'application#render_400'
   get '*unmatched_route', to: 'application#render_404'

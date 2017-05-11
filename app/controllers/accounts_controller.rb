@@ -1,6 +1,9 @@
 class AccountsController < ApplicationController
-  require 'rest-client'
+  layout 'signed_in'
   skip_before_action :verify_authenticity_token
+  before_action :require_login
+  require 'rest-client'
+  
 
   def index
     respond_with (@accounts = Account.all)
