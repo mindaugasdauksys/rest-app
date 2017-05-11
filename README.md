@@ -19,3 +19,7 @@ setup database:<br/>
 |/payments/:id|GET PATCH DELETE|
 |/branches|GET POST|
 |/branches/:id|GET|
+
+# Login:
+Username: Petras
+Password: 123456
