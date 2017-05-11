@@ -60,7 +60,7 @@ class ApplicationController < ActionController::Base
   private
 
   def authenticate_user
-    puts 'Authentificating..'
+    puts 'Authenticating..'
     authenticate_with_http_token do |token, options|
       User.find_by(auth_token: token)
     end

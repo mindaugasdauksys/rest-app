@@ -3,18 +3,19 @@ class SessionsController < ApplicationController
   skip_before_action :verify_authenticity_token
   def create
     session_params = params.require(:session)
-    if user = User.valid_login?(session_params[:username], session_params[:password])
+    if (user = User.valid_login?(session_params[:username], session_params[:password]))
       user.create_token
       helpers.remember(user)
       redirect_to :accounts
     else
-      puts 'I was referred there'
       render :new
     end
   end
 
   def new
-    redirect_to :accounts if current_user
+    if current_user
+      redirect_to :accounts
+    end
   end
 
   def destroy

@@ -15,3 +15,5 @@ Payment.create( from: 3, to: 1, amount: 600, currency: 'EUR' )
 
 Branch.create( address: 'Vilnius, Konstitucijos pr. 20' )
 Branch.create( address: 'Kaunas, Vilniaus g. 30' )
+
+User.create( username: 'Petras', password: '123456' )
