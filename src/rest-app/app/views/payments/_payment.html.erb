@@ -1,0 +1,11 @@
+<tr>
+  <th><%= payment.from %></th>
+  <th><%= payment.to %></th>
+  <th><%= payment.amount %></th>
+  <th><%= payment.currency %></th>
+  <th>
+    <%= link_to 'Show', payment %>
+    <%= link_to 'Edit', edit_payment_path(payment) %> 
+    <%= link_to 'Destroy', payment_path(payment), method: :delete, data: { confirm: 'Are you sure?' } %>
+  </th>
+</tr>

@@ -1,0 +1,17 @@
+<p>
+  <strong>Sender:</strong>
+  <%= @transaction.sender_id %>
+</p>
+
+<p>
+  <strong>Recipient:</strong>
+  <%= @transaction.recipient_id %>
+<p>
+
+<p>
+  <strong>Amount (EUR):</strong>
+  <%= link_to @transaction.amount, transaction_amount_path(@transaction) %>
+</p>
+
+<%= link_to 'Edit', edit_transaction_path(@transaction) %> |
+<%= link_to 'All transactions', transactions_path %>

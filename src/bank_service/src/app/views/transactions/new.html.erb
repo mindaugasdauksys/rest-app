@@ -1,0 +1,36 @@
+<%= form_for :transaction, url: transactions_path do |f| %>
+  <% if @transaction.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@transaction.errors.count, "error") %> prohibited
+        this transaction from being created:
+      </h2>
+      <ul>
+        <% @transaction.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :sender_id %><br>
+    <%= f.text_field :sender_id %>
+  </p>
+
+  <p>
+    <%= f.label :recipient_id %><br>
+    <%= f.text_field :recipient_id %>
+  </p>
+
+  <p>
+    <%= f.label :amount %> (EUR)<br>
+    <%= f.text_field :amount %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+<%= link_to 'All transactions', transactions_path %>
