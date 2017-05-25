@@ -1,0 +1,15 @@
+<%= form_for :session, url: :login do |f| %>
+  <p>
+    <%= f.label :Username %><br>
+    <%= f.text_field :username %>
+  </p>
+
+  <p>
+    <%= f.label :Password %><br>
+    <%= f.password_field :password %>
+  </p>
+
+  <p>
+    <%= submit_tag 'Login' %>
+  </p>
+<% end %>
