@@ -7,8 +7,8 @@ start server:<br/>
 * docker-compose up -d<br/>
 
 setup database:<br/>
-* docker-compose run rest_app rails db:setup
-* docker-compose run web rails db:setup
+* docker-compose run rest_app bin/rails db:setup RAILS_ENV=development
+* docker-compose run web bin/rails db:setup RAILS_ENV=development
 
 # Available methods:
 |Path|Methods|
