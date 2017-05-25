@@ -7,7 +7,8 @@ start server:<br/>
 * docker-compose up -d<br/>
 
 setup database:<br/>
-* docker-compose run -d webapp rake db:setup
+* docker-compose run rest_app rails db:setup
+* docker-compose run web rails db:setup
 
 # Available methods:
 |Path|Methods|
@@ -19,7 +20,3 @@ setup database:<br/>
 |/payments/:id|GET PATCH DELETE|
 |/branches|GET POST|
 |/branches/:id|GET|
-
-# Login:
-Username: Petras
-Password: 123456

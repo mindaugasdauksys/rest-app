@@ -1,38 +1,30 @@
 version: '2'
 services:
-  webapp_setup:
-    build:
-      context: .
-      dockerfile: Dockerfile.development
-    depends_on:
-      - postgres
-    environment:
-      - PASSENGER_APP_ENV=development
-    entrypoint: ./setup.sh
-  webapp:
-    container_name: rest-app
-    build:
-      context: .
-      dockerfile: Dockerfile.development
-    depends_on:
-      - postgres
-      - webapp_setup
+  db:
+    image: postgres
     ports:
-      - "3000:80"
-    environment:
-      - PASSENGER_APP_ENV=development
+      - "5432:5432"
+  bank_service:
+    build:
+      context: ./src/bank_service
+      dockerfile: Dockerfile
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
     volumes:
-      - .:/home/app/webapp
-  postgres:
-    image: postgres:9.5.3
-    environment:
-      - POSTGRES_PASSWORD=mysecretpassword
-      - POSTGRES_USER=rest-app
-      - POSTGRES_DB=rest-app_development
-    volumes_from:
-      - data
-  data:
-    image: postgres:9.5.3
+      - .:/myapp/src/web
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+  rest_app:
+    build:
+      context: .
+      dockerfile: Dockerfile.rest-app
+    command: bundle exec rails s -p 3001 -b '0.0.0.0'
     volumes:
-      - /var/lib/postgresql
-    command: "true"
+      - .:/myapp/src/rest-app
+    depends_on:
+      - db
