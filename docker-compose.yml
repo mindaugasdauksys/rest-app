@@ -5,6 +5,7 @@ services:
     ports:
       - "5432:5432"
   bank_service:
+    image: absimas/bank:1.0
     build:
       context: ./src/bank_service
       dockerfile: Dockerfile
