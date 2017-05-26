@@ -1,7 +1,8 @@
 class AccountsController < ApplicationController
   require 'rest-client'
   skip_before_action :verify_authenticity_token
-  before_filter :authenticate_request!
+  before_filter :authenticate_request!, only:  [:show, :index]
+  before_filter :authenticate_admin!, only: [:create, :update, :destroy]
   def index
     send_get('http://rest_app:3001/accounts')
   end

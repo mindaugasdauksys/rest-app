@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20170523060359) do
   create_table "users", force: :cascade do |t|
     t.string   "username",             null: false
     t.string   "password_digest",      null: false
+    t.string   "mode",                 null: false
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"

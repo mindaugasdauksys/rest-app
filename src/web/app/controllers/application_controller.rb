@@ -56,6 +56,19 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def authenticate_admin!
+    puts "payload[1]: #{payload[0].to_json}"
+    if !payload || !JsonWebToken.valid_payload(payload.first) || payload[0]['mode'] != 'admin'
+      puts 'first'
+      puts 'payload' if !payload
+      puts 'invalid payload' if payload
+      head :unauthorized
+    else
+      load_current_user!
+      puts 'second' unless @current_user
+      head :unauthorized unless @current_user
+    end
+  end
   private
 
   def payload
