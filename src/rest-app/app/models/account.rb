@@ -1,9 +1,10 @@
+# describes account model
 class Account < ApplicationRecord
   validates_presence_of :currency
   validates_presence_of :name
   validates_presence_of :surname
   validates_presence_of :amount
-  validates_inclusion_of :currency, in: ['EUR', 'USD']
+  validates_inclusion_of :currency, in: %w[EUR USD]
   after_initialize :init
   include RecordWithMoney
   def init

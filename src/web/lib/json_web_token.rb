@@ -1,5 +1,6 @@
 require 'jwt'
 
+# class for jwt interface
 class JsonWebToken
   def self.encode(payload)
     payload.reverse_merge!(meta)
@@ -11,21 +12,16 @@ class JsonWebToken
   end
 
   def self.valid_payload(payload)
-    if expired(payload) || payload['iss'] != meta[:iss] || payload['aud'] != meta[:aud]
-      puts 'expired' if expired(payload)
-      puts 'iss' if payload['iss'] != meta[:iss]
-      puts 'aud' if payload['aud'] != meta[:aud]
-      return false
-    else
-      return true
-    end
+    return false if expired(payload) || payload['iss'] != meta[:iss] ||
+                    payload['aud'] != meta[:aud]
+    true
   end
 
   def self.meta
     {
       exp: 7.days.from_now.to_i,
       iss: 'issuer_name',
-      aud: 'client',
+      aud: 'client'
     }
   end
 

@@ -26,7 +26,7 @@ Find by name:
       <td><%= account.id %></td>
       <td><%= account.first_name %></td>
       <td><%= account.last_name %></td>
-      <td><%= link_to account.balance, account_balance_path(account) %></td>
+      <td><%= account.balance %></td>
       <td><%= link_to account.unique_transactions.size, account_transactions_path(account) %></td>
       <td><%= link_to 'Edit', edit_account_path(account) %></td>
       <td><%= link_to 'Destroy', account_path(account),

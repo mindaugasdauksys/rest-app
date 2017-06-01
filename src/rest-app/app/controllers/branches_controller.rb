@@ -1,6 +1,7 @@
+# branches controller
 class BranchesController < ApplicationController
   def index
-    respond_with (@branches = Branch.all)
+    respond_with(@branches = Branch.all)
   end
 
   def show
@@ -8,7 +9,7 @@ class BranchesController < ApplicationController
     if @branch
       respond_with @branch
     else
-      render_404
+      render_code 404
     end
   end
 end

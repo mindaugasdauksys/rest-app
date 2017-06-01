@@ -24,7 +24,7 @@ Find by sender/receiver name:
       <td><%= transaction.id %></td>
       <td><%= link_to transaction.sender.first_name, account_path(transaction.sender_id) %></td>
       <td><%= link_to transaction.recipient.first_name, account_path(transaction.recipient_id) %></td>
-      <td><%= link_to transaction.amount, transaction_amount_path(transaction) %></td>
+      <td><%= transaction.amount %></td>
       <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
     </tr>
   <% end %>

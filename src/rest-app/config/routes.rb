@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       get :transfer
     end
   end
-  resources :branches, only: [:index, :show]
+  resources :branches, only: %i[index show]
   get '/400', to: 'application#render_400'
   get '*unmatched_route', to: 'application#render_404'
   post '*unmatched_route', to: 'application#render_404'

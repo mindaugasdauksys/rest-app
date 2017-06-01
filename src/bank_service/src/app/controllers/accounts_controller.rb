@@ -1,5 +1,6 @@
 class AccountsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
+  skip_before_action :verify_authenticity_token
 
   def new
     @account = Account.new
@@ -19,8 +20,8 @@ class AccountsController < ApplicationController
     @account = Account.find(params[:id])
 
     respond_to do |format|
-      format.html
       format.json { render json: @account }
+      # format.html
     end
   end
 
@@ -32,8 +33,9 @@ class AccountsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html
       format.json { render json: @accounts }
+      format.html
+
     end
   end
 
@@ -43,7 +45,6 @@ class AccountsController < ApplicationController
 
   def update
     @account = Account.find(params[:id])
-
     if @account.update(account_params)
       redirect_to @account
     else

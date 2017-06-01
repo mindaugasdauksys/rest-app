@@ -1,5 +1,6 @@
 class TransactionsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
+  skip_before_action :verify_authenticity_token
 
   def new
     @transaction = Transaction.new
@@ -40,8 +41,8 @@ class TransactionsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html
       format.json { render json: @transactions }
+      # format.html
     end
 
   end

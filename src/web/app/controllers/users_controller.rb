@@ -1,3 +1,4 @@
+# users controller
 class UsersController < ApplicationController
   def create
     user = User.new(user_params)
@@ -25,7 +26,7 @@ class UsersController < ApplicationController
 
     if user && user.authenticate(params[:password])
       auth_token = JsonWebToken.encode(user_id: user.id, mode: user.mode)
-      render json: {auth_token: auth_token}, status: :ok
+      render json: { auth_token: auth_token }, status: :ok
     else
       head :unauthorized
     end
@@ -34,6 +35,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password, :password_confirmation, :mode)
+    params.require(:user).permit(:username, :password,
+                                 :password_confirmation, :mode)
   end
 end

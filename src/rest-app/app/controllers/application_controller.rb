@@ -1,39 +1,23 @@
+# abstract controller
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  rescue_from ActionController::ParameterMissing, with: :render_400
+  rescue_from ActionController::ParameterMissing, with: -> { render_code 400 }
 
-  def render_401
+  def respond_bad_attributes
     respond_to do |format|
-      format.html { render file: "#{Rails.root}/public/401", layout: false, status: :unauthorized }
-      format.any { head :unauthorized }
-    end
-  end
-
-  def render_404
-    respond_to do |format|
-      format.html { render file: "#{Rails.root}/public/404", layout: false, status: :not_found }
-      format.any { head :not_found }
-    end
-  end
-
-  def respond_bad_attributes(&block)
-    respond_to do |format|
-      format.html { block.call }
+      format.html { yield }
       format.json { head :bad_request }
     end
   end
 
-  def render_400
-    respond_to do |format|
-      format.html { render file: "#{Rails.root}/public/400", layout: false, status: :bad_request }
-      format.any { head :bad_request }
-    end
+  def render_404
+    render_code 404
   end
 
-  def render_503
+  def render_code(code)
     respond_to do |format|
-      format.html { render file: "#{Rails.root}/public/503", layout: false, status: 503 }
-      format.any { head 503 }
+      format.html { render_file_with_code code }
+      format.any { head code }
     end
   end
 
@@ -42,5 +26,9 @@ class ApplicationController < ActionController::Base
       format.html
       format.json { render json: param }
     end
+  end
+
+  private def render_file_with_code(code)
+    render file: "#{Rails.root}/public/#{code}", layout: false, status: code
   end
 end

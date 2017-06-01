@@ -1,9 +1,10 @@
+# accounts controller
 class AccountsController < ApplicationController
   skip_before_action :verify_authenticity_token
   require 'rest-client'
 
   def index
-    respond_with (@accounts = Account.all)
+    respond_with(@accounts = Account.all)
   end
 
   def show
@@ -23,12 +24,12 @@ class AccountsController < ApplicationController
     with_id_protected { change_attributes(account_params) { render :edit } }
   end
 
-  def change_attributes(attributes, &block)
+  def change_attributes(attributes)
     if @account.update_attributes attributes
       puts "redirecting to: #{@account}"
       redirect_to @account
     else
-      respond_bad_attributes { block.call }
+      respond_bad_attributes { yield }
     end
   end
 
@@ -52,24 +53,22 @@ class AccountsController < ApplicationController
   end
 
   def reselect_currency
-    begin
-      @from_eur = ratio('EUR', 'USD')
-      @from_usd = ratio('USD', 'EUR')
-      protect_id
-    rescue
-      render_503
-    end
+    @from_eur = ratio('EUR', 'USD')
+    @from_usd = ratio('USD', 'EUR')
+    protect_id
+  rescue
+    render_code 503
   end
 
   def convert
-    with_id_protected do 
+    with_id_protected do
       currency = account_params.require(:currency)
       begin
         change_attributes(amount: @account.amount * ratio(@account.currency,
                                                           currency),
                           currency: currency) { render :reselect_currency }
       rescue
-        render_503
+        render_code 503
       end
     end
   end
@@ -82,7 +81,7 @@ class AccountsController < ApplicationController
 
   def ratio(base, symbols)
     if !base.eql? symbols
-      JSON.parse(RestClient.get(url(base,symbols)).body)['rates'][symbols]
+      JSON.parse(RestClient.get(url(base, symbols)).body)['rates'][symbols]
     else
       1
     end
@@ -94,11 +93,11 @@ class AccountsController < ApplicationController
 
   def protect_id
     @account = Account.find_by_id(params[:id])
-    render_404 unless @account
+    render_code 404 unless @account
   end
 
-  def with_id_protected(&block)
+  def with_id_protected
     @account = Account.find_by_id(params[:id])
-    @account ? block.call : render_404
+    @account ? yield : render_code(404)
   end
 end
