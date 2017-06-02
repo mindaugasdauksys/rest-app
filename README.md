@@ -26,8 +26,8 @@ setup database:<br/>
 
 # Register in:
 /users (POST)
-examples:
-{ "user" : { "username" : "admin", "password" : "123456", "password_confirmation" : "123456", mode: "admin" } }
+examples:<br/>
+{ "user" : { "username" : "admin", "password" : "123456", "password_confirmation" : "123456", mode: "admin" } }<br/>
 { "user" : { "username" : "user", "password" : "123456", "password_confirmation" : "123456", mode: "user" } }
 
 # Login in:
