@@ -13,10 +13,4 @@ class PaymentsController < ApplicationController
       head result.response
     end
   end
-
-  private
-
-  def payment_params
-    params.fetch(:payment, {}).permit(:from, :to, :amount, :currency)
-  end
 end

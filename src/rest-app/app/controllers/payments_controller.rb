@@ -11,9 +11,8 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    params.each { |key, value| puts "#{key}:#{value}" }
     @payment = Payment.new(payment_params)
-    if @payment.save!
+    if CreatePaymentPolicy.new(@payment).allowed? && @payment.save!
       redirect_to @payment
     else
       respond_bad_attributes { render :new }

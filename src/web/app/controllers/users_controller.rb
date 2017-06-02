@@ -1,8 +1,9 @@
 # users controller
+
 class UsersController < ApplicationController
   def create
-    user = User.new(user_params)
-    if user.save
+    user = UserRegistration.new(user_params)
+    if user.register
       head :ok
     else
       head :bad_request

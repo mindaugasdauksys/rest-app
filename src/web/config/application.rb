@@ -9,5 +9,6 @@ Bundler.require(*Rails.groups)
 module Web
   # class application
   class Application < Rails::Application
+    config.middleware.use 'CatchJsonParseErrors'
   end
 end

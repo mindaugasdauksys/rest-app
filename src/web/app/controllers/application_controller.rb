@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def create
-    result = RequestInternalPostController.call(params)
+    result = RequestInternalPostController.call(post_params)
     if result.success?
       render json: result.response
     else
@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   def update
-    result = RequestInternalPatchController.call(params)
+    result = RequestInternalPatchController.call(patch_params)
     if result.success?
       render json: result.response
     else
@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
   end
 
   def destroy
-    result = RequestInternalDeleteController.call(params)
+    result = RequestInternalDeleteController.call(identity_params)
     if result.success?
       render json: result.response
     else
@@ -58,29 +58,34 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def authenticate_request!
-    if !payload || !JsonWebToken.valid_payload(payload.first)
-      head :unauthorized
-    else
+  def authenticate_user!
+    if auth_policy.at_least_user?
       load_current_user!
       head :unauthorized unless @current_user
+    else
+      head :unauthorized
     end
   end
 
   def authenticate_admin!
-    if !payload || !JsonWebToken.valid_payload(payload.first) ||
-       payload[0]['mode'] != 'admin'
-      head :unauthorized
-    else
+    if auth_policy.admin?
       load_current_user!
       head :unauthorized unless @current_user
+    elsif auth_policy.at_least_user?
+      head :forbidden
+    else
+      head :unauthorized
     end
+  end
+
+  def auth_policy
+    AuthorizationPolicy.new(payload)
   end
 
   private
 
   def send_get
-    result = RequestInternalGetController.call(params)
+    result = RequestInternalGetController.call(identity_params)
     if result.success?
       render json: result.response
     else
@@ -92,8 +97,20 @@ class ApplicationController < ActionController::Base
     render file: "#{Rails.root}/public/#{code}", layout: false, status: code
   end
 
+  def post_params
+    params.slice('controller', controller_name.singularize)
+  end
+
+  def patch_params
+    params.slice('controller', controller_name.singularize, 'id')
+  end
+
+  def identity_params
+    params.slice('controller', 'id')
+  end
+
   def payload
-    auth_header = request.headers['Authorization']
+    return unless (auth_header = request.headers['Authorization'])
     token = auth_header.split(' ').last
     JsonWebToken.decode(token)
   end
