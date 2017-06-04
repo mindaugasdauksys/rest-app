@@ -1,0 +1,20 @@
+<h1>Convert currency</h1>
+
+<p>Name: <%= @account.name %></p>
+<p>Surname: <%= @account.surname %></p>
+<p>Amount: <%= @account.amount %></p>
+<p>Currency: <%= @account.currency %></p>
+<p>---------------------------------</p>
+<%= view_object(:exchange_info, @account.money).html %>
+<p>---------------------------------</p>
+<%= form_for :account, url: convert_account_path(@account), method: :patch do |f| %>
+  <p>
+    <%= f.label :currency %>
+    <%= f.select :currency, options_for_select(['USD', 'EUR']) %><br>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+<%= link_to "Go back", { action: "index" } %>

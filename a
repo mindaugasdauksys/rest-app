@@ -1,6 +1,0 @@
-docker-compose build
-docker-compose up &
-sleep 5
-docker-compose run rest_app bin/rails db:setup
-docker-compose run web bin/rails db:schema:load
-docker-compose run web bin/rails db:seed
