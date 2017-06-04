@@ -4837,3 +4837,417 @@ app/middleware/catch_json_parse_errors.rb:8:in `call'
   Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
   Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
   Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (24.0ms)
+DEPRECATION WARNING: Passing strings or symbols to the middleware builder is deprecated, please change
+them to actual class references.  For example:
+
+  "CatchJsonParseErrors" => CatchJsonParseErrors
+
+ (called from <top (required)> at /home/mindaugas/rest-app/config/environment.rb:5)
+Started GET "/" for 127.0.0.1 at 2017-06-05 00:26:56 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (66.9ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Parameters: {"internal"=>true}
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/railties-5.0.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/railties-5.0.2/lib/rails/templates/rails/welcome/index.html.erb (2.0ms)
+Completed 200 OK in 56ms (Views: 31.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/accounts" for 127.0.0.1 at 2017-06-05 00:27:01 +0300
+  
+ActionController::RoutingError (uninitialized constant AccountsController::AccountsHelper):
+  
+app/controllers/accounts_controller.rb:5:in `<class:AccountsController>'
+app/controllers/accounts_controller.rb:2:in `<top (required)>'
+app/middleware/catch_json_parse_errors.rb:8:in `call'
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered collection of /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb [30 times] (20.5ms)
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (11.8ms)
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (68.4ms)
+DEPRECATION WARNING: Passing strings or symbols to the middleware builder is deprecated, please change
+them to actual class references.  For example:
+
+  "CatchJsonParseErrors" => CatchJsonParseErrors
+
+ (called from <top (required)> at /home/mindaugas/rest-app/config/environment.rb:5)
+Started GET "/accounts" for 127.0.0.1 at 2017-06-05 00:30:30 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by AccountsController#index as HTML
+  Rendering accounts/index.html.erb within layouts/application
+  [1m[36mAccount Load (37.1ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts"[0m
+  Rendered collection of accounts/_account.html.erb [4 times] (7.9ms)
+  Rendered accounts/index.html.erb within layouts/application (133.1ms)
+Completed 200 OK in 306ms (Views: 156.1ms | ActiveRecord: 101.1ms)
+
+
+Started GET "/stylesheets/application.css" for 127.0.0.1 at 2017-06-05 00:30:30 +0300
+Processing by ApplicationController#render_not_found as CSS
+  Parameters: {"unmatched_route"=>"stylesheets/application"}
+Completed 404 Not Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/javascripts/application.js" for 127.0.0.1 at 2017-06-05 00:30:30 +0300
+Processing by ApplicationController#render_not_found as JS
+  Parameters: {"unmatched_route"=>"javascripts/application"}
+Security warning: an embedded <script> tag on another site requested protected JavaScript. If you know what you're doing, go ahead and disable forgery protection on this action to permit cross-origin JavaScript embedding.
+Completed 422 Unprocessable Entity in 1ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::InvalidCrossOriginRequest (Security warning: an embedded <script> tag on another site requested protected JavaScript. If you know what you're doing, go ahead and disable forgery protection on this action to permit cross-origin JavaScript embedding.):
+  
+app/middleware/catch_json_parse_errors.rb:8:in `call'
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (3.2ms)
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (58.6ms)
+Started GET "/accounts/4/reselect_currency" for 127.0.0.1 at 2017-06-05 00:30:32 +0300
+Processing by AccountsController#reselect_currency as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mAccount Load (0.4ms)[0m  [1m[34mSELECT  "accounts".* FROM "accounts" WHERE "accounts"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering accounts/reselect_currency.html.erb within layouts/application
+  Rendered accounts/reselect_currency.html.erb within layouts/application (503.1ms)
+Completed 200 OK in 534ms (Views: 505.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/stylesheets/application.css" for 127.0.0.1 at 2017-06-05 00:30:33 +0300
+Processing by ApplicationController#render_not_found as CSS
+  Parameters: {"unmatched_route"=>"stylesheets/application"}
+Started GET "/javascripts/application.js" for 127.0.0.1 at 2017-06-05 00:30:33 +0300
+Completed 404 Not Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Processing by ApplicationController#render_not_found as JS
+  Parameters: {"unmatched_route"=>"javascripts/application"}
+Security warning: an embedded <script> tag on another site requested protected JavaScript. If you know what you're doing, go ahead and disable forgery protection on this action to permit cross-origin JavaScript embedding.
+Completed 422 Unprocessable Entity in 1ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::InvalidCrossOriginRequest (Security warning: an embedded <script> tag on another site requested protected JavaScript. If you know what you're doing, go ahead and disable forgery protection on this action to permit cross-origin JavaScript embedding.):
+  
+app/middleware/catch_json_parse_errors.rb:8:in `call'
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (5.9ms)
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.2ms)
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (23.5ms)
+DEPRECATION WARNING: Passing strings or symbols to the middleware builder is deprecated, please change
+them to actual class references.  For example:
+
+  "CatchJsonParseErrors" => CatchJsonParseErrors
+
+ (called from <top (required)> at /home/mindaugas/rest-app/config/environment.rb:5)
+Started GET "/accounts/4/reselect_currency" for 127.0.0.1 at 2017-06-05 00:34:56 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by AccountsController#reselect_currency as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT  "accounts".* FROM "accounts" WHERE "accounts"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering accounts/reselect_currency.html.erb within layouts/application
+  Rendered accounts/reselect_currency.html.erb within layouts/application (5526.7ms)
+Completed 200 OK in 5670ms (Views: 5652.4ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/stylesheets/application.css" for 127.0.0.1 at 2017-06-05 00:35:02 +0300
+Processing by ApplicationController#render_not_found as CSS
+  Parameters: {"unmatched_route"=>"stylesheets/application"}
+Completed 404 Not Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/javascripts/application.js" for 127.0.0.1 at 2017-06-05 00:35:02 +0300
+Processing by ApplicationController#render_not_found as JS
+  Parameters: {"unmatched_route"=>"javascripts/application"}
+Security warning: an embedded <script> tag on another site requested protected JavaScript. If you know what you're doing, go ahead and disable forgery protection on this action to permit cross-origin JavaScript embedding.
+Completed 422 Unprocessable Entity in 1ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::InvalidCrossOriginRequest (Security warning: an embedded <script> tag on another site requested protected JavaScript. If you know what you're doing, go ahead and disable forgery protection on this action to permit cross-origin JavaScript embedding.):
+  
+app/middleware/catch_json_parse_errors.rb:8:in `call'
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (2.3ms)
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (19.2ms)
+DEPRECATION WARNING: Passing strings or symbols to the middleware builder is deprecated, please change
+them to actual class references.  For example:
+
+  "CatchJsonParseErrors" => CatchJsonParseErrors
+
+ (called from <top (required)> at /home/mindaugas/rest-app/config/environment.rb:5)
+Started GET "/accounts/4/reselect_currency" for 127.0.0.1 at 2017-06-05 00:37:48 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by AccountsController#reselect_currency as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT  "accounts".* FROM "accounts" WHERE "accounts"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering accounts/reselect_currency.html.erb within layouts/application
+  Rendered accounts/reselect_currency.html.erb within layouts/application (4.7ms)
+Completed 500 Internal Server Error in 25ms (ActiveRecord: 2.5ms)
+
+
+  
+ActionView::Template::Error (uninitialized constant ActionView::Helper):
+    1: <h1>Convert currency</h1>
+    2: <p><%= ModelInfoDecorator.new(@account).info %></p>
+    3: <p>Name: <%= @account.name %></p>
+    4: <p>Surname: <%= @account.surname %></p>
+    5: <p>Amount: <%= @account.amount %></p>
+  
+app/decorators/model_info_decorator.rb:2:in `<class:ModelInfoDecorator>'
+app/decorators/model_info_decorator.rb:1:in `<top (required)>'
+app/views/accounts/reselect_currency.html.erb:2:in `_app_views_accounts_reselect_currency_html_erb__4190317655280942656_70319855846440'
+app/middleware/catch_json_parse_errors.rb:8:in `call'
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (3.7ms)
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (21.6ms)
+DEPRECATION WARNING: Passing strings or symbols to the middleware builder is deprecated, please change
+them to actual class references.  For example:
+
+  "CatchJsonParseErrors" => CatchJsonParseErrors
+
+ (called from <top (required)> at /home/mindaugas/rest-app/config/environment.rb:5)
+Started GET "/accounts/4/reselect_currency" for 127.0.0.1 at 2017-06-05 00:38:37 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by AccountsController#reselect_currency as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT  "accounts".* FROM "accounts" WHERE "accounts"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering accounts/reselect_currency.html.erb within layouts/application
+  Rendered accounts/reselect_currency.html.erb within layouts/application (578.4ms)
+Completed 200 OK in 709ms (Views: 690.7ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/stylesheets/application.css" for 127.0.0.1 at 2017-06-05 00:38:38 +0300
+Processing by ApplicationController#render_not_found as CSS
+  Parameters: {"unmatched_route"=>"stylesheets/application"}
+Started GET "/javascripts/application.js" for 127.0.0.1 at 2017-06-05 00:38:38 +0300
+Completed 404 Not Found in 0ms (ActiveRecord: 0.0ms)
+
+
+Processing by ApplicationController#render_not_found as JS
+  Parameters: {"unmatched_route"=>"javascripts/application"}
+Security warning: an embedded <script> tag on another site requested protected JavaScript. If you know what you're doing, go ahead and disable forgery protection on this action to permit cross-origin JavaScript embedding.
+Completed 422 Unprocessable Entity in 1ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::InvalidCrossOriginRequest (Security warning: an embedded <script> tag on another site requested protected JavaScript. If you know what you're doing, go ahead and disable forgery protection on this action to permit cross-origin JavaScript embedding.):
+  
+app/middleware/catch_json_parse_errors.rb:8:in `call'
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (2.6ms)
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (18.8ms)
+DEPRECATION WARNING: Passing strings or symbols to the middleware builder is deprecated, please change
+them to actual class references.  For example:
+
+  "CatchJsonParseErrors" => CatchJsonParseErrors
+
+ (called from <top (required)> at /home/mindaugas/rest-app/config/environment.rb:5)
+Started GET "/accounts/4/reselect_currency" for 127.0.0.1 at 2017-06-05 00:39:58 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by AccountsController#reselect_currency as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT  "accounts".* FROM "accounts" WHERE "accounts"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering accounts/reselect_currency.html.erb within layouts/application
+  Rendered accounts/reselect_currency.html.erb within layouts/application (434.1ms)
+Completed 200 OK in 595ms (Views: 577.6ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/stylesheets/application.css" for 127.0.0.1 at 2017-06-05 00:39:59 +0300
+Processing by ApplicationController#render_not_found as CSS
+  Parameters: {"unmatched_route"=>"stylesheets/application"}
+Completed 404 Not Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/javascripts/application.js" for 127.0.0.1 at 2017-06-05 00:39:59 +0300
+Processing by ApplicationController#render_not_found as JS
+  Parameters: {"unmatched_route"=>"javascripts/application"}
+Security warning: an embedded <script> tag on another site requested protected JavaScript. If you know what you're doing, go ahead and disable forgery protection on this action to permit cross-origin JavaScript embedding.
+Completed 422 Unprocessable Entity in 1ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::InvalidCrossOriginRequest (Security warning: an embedded <script> tag on another site requested protected JavaScript. If you know what you're doing, go ahead and disable forgery protection on this action to permit cross-origin JavaScript embedding.):
+  
+app/middleware/catch_json_parse_errors.rb:8:in `call'
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (2.5ms)
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (18.9ms)
+DEPRECATION WARNING: Passing strings or symbols to the middleware builder is deprecated, please change
+them to actual class references.  For example:
+
+  "CatchJsonParseErrors" => CatchJsonParseErrors
+
+ (called from <top (required)> at /home/mindaugas/rest-app/config/environment.rb:5)
+Started GET "/accounts/4/reselect_currency" for 127.0.0.1 at 2017-06-05 00:40:28 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by AccountsController#reselect_currency as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mAccount Load (0.5ms)[0m  [1m[34mSELECT  "accounts".* FROM "accounts" WHERE "accounts"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering accounts/reselect_currency.html.erb within layouts/application
+  Rendered accounts/reselect_currency.html.erb within layouts/application (469.5ms)
+Completed 200 OK in 603ms (Views: 582.5ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/stylesheets/application.css" for 127.0.0.1 at 2017-06-05 00:40:29 +0300
+Processing by ApplicationController#render_not_found as CSS
+  Parameters: {"unmatched_route"=>"stylesheets/application"}
+Completed 404 Not Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/javascripts/application.js" for 127.0.0.1 at 2017-06-05 00:40:29 +0300
+Processing by ApplicationController#render_not_found as JS
+  Parameters: {"unmatched_route"=>"javascripts/application"}
+Security warning: an embedded <script> tag on another site requested protected JavaScript. If you know what you're doing, go ahead and disable forgery protection on this action to permit cross-origin JavaScript embedding.
+Completed 422 Unprocessable Entity in 1ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::InvalidCrossOriginRequest (Security warning: an embedded <script> tag on another site requested protected JavaScript. If you know what you're doing, go ahead and disable forgery protection on this action to permit cross-origin JavaScript embedding.):
+  
+app/middleware/catch_json_parse_errors.rb:8:in `call'
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (2.6ms)
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (18.1ms)
+Started GET "/accounts/4/reselect_currency" for 127.0.0.1 at 2017-06-05 00:40:29 +0300
+Processing by AccountsController#reselect_currency as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT  "accounts".* FROM "accounts" WHERE "accounts"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering accounts/reselect_currency.html.erb within layouts/application
+  Rendered accounts/reselect_currency.html.erb within layouts/application (352.1ms)
+Completed 200 OK in 358ms (Views: 356.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/stylesheets/application.css" for 127.0.0.1 at 2017-06-05 00:40:30 +0300
+Processing by ApplicationController#render_not_found as CSS
+  Parameters: {"unmatched_route"=>"stylesheets/application"}
+Completed 404 Not Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/javascripts/application.js" for 127.0.0.1 at 2017-06-05 00:40:30 +0300
+Processing by ApplicationController#render_not_found as JS
+  Parameters: {"unmatched_route"=>"javascripts/application"}
+Security warning: an embedded <script> tag on another site requested protected JavaScript. If you know what you're doing, go ahead and disable forgery protection on this action to permit cross-origin JavaScript embedding.
+Completed 422 Unprocessable Entity in 1ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::InvalidCrossOriginRequest (Security warning: an embedded <script> tag on another site requested protected JavaScript. If you know what you're doing, go ahead and disable forgery protection on this action to permit cross-origin JavaScript embedding.):
+  
+app/middleware/catch_json_parse_errors.rb:8:in `call'
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (5.4ms)
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.1ms)
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (22.6ms)
+DEPRECATION WARNING: Passing strings or symbols to the middleware builder is deprecated, please change
+them to actual class references.  For example:
+
+  "CatchJsonParseErrors" => CatchJsonParseErrors
+
+ (called from <top (required)> at /home/mindaugas/rest-app/config/environment.rb:5)
+Started GET "/accounts/4/reselect_currency" for 127.0.0.1 at 2017-06-05 00:41:19 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by AccountsController#reselect_currency as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT  "accounts".* FROM "accounts" WHERE "accounts"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering accounts/reselect_currency.html.erb within layouts/application
+  Rendered accounts/reselect_currency.html.erb within layouts/application (328.5ms)
+Completed 200 OK in 461ms (Views: 442.5ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/stylesheets/application.css" for 127.0.0.1 at 2017-06-05 00:41:20 +0300
+Processing by ApplicationController#render_not_found as CSS
+  Parameters: {"unmatched_route"=>"stylesheets/application"}
+Completed 404 Not Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/javascripts/application.js" for 127.0.0.1 at 2017-06-05 00:41:20 +0300
+Processing by ApplicationController#render_not_found as JS
+  Parameters: {"unmatched_route"=>"javascripts/application"}
+Security warning: an embedded <script> tag on another site requested protected JavaScript. If you know what you're doing, go ahead and disable forgery protection on this action to permit cross-origin JavaScript embedding.
+Completed 422 Unprocessable Entity in 1ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::InvalidCrossOriginRequest (Security warning: an embedded <script> tag on another site requested protected JavaScript. If you know what you're doing, go ahead and disable forgery protection on this action to permit cross-origin JavaScript embedding.):
+  
+app/middleware/catch_json_parse_errors.rb:8:in `call'
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (3.0ms)
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (18.6ms)
+Started GET "/accounts/4/reselect_currency" for 127.0.0.1 at 2017-06-05 00:41:21 +0300
+Processing by AccountsController#reselect_currency as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT  "accounts".* FROM "accounts" WHERE "accounts"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering accounts/reselect_currency.html.erb within layouts/application
+  Rendered accounts/reselect_currency.html.erb within layouts/application (315.5ms)
+Completed 200 OK in 321ms (Views: 318.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/stylesheets/application.css" for 127.0.0.1 at 2017-06-05 00:41:21 +0300
+Processing by ApplicationController#render_not_found as CSS
+  Parameters: {"unmatched_route"=>"stylesheets/application"}
+Completed 404 Not Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/javascripts/application.js" for 127.0.0.1 at 2017-06-05 00:41:21 +0300
+Processing by ApplicationController#render_not_found as JS
+  Parameters: {"unmatched_route"=>"javascripts/application"}
+Security warning: an embedded <script> tag on another site requested protected JavaScript. If you know what you're doing, go ahead and disable forgery protection on this action to permit cross-origin JavaScript embedding.
+Completed 422 Unprocessable Entity in 1ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::InvalidCrossOriginRequest (Security warning: an embedded <script> tag on another site requested protected JavaScript. If you know what you're doing, go ahead and disable forgery protection on this action to permit cross-origin JavaScript embedding.):
+  
+app/middleware/catch_json_parse_errors.rb:8:in `call'
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (4.6ms)
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.2ms)
+  Rendering /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (12.1ms)
+  Rendered /home/mindaugas/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (33.6ms)
