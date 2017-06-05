@@ -42,10 +42,11 @@ class PaymentsController < ApplicationController
 
   # bank_service - docker image name or might be docker machine ip
   def transfer
-    response = RestClient.get 'bank_service:8000/accounts', accept: :json
-    @others = if response
-                json = JSON.parse(response.body)
-                json.map { |entry| entry['id'] }
+    @payment = Payment.new
+    # resp = RestClient.get 'bank_service:8000/accounts', accept: :json
+    @accounts = AccountsForPayment.new(accounts: Account.all).ids
+    @others = if defined?(resp) && resp
+                JSON.parse(resp.body).map { |entry| entry['id'] }
               else
                 []
               end
